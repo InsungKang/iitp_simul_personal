@@ -39,10 +39,10 @@
 	```
 2. Firmware/Tools/sitl_gazebo/worlds 
 	```
-	iitp.world 
-	iitp_noceiling.world 
-	iitp_noceiling_v1.world 
-	iitp_v1.world 
+	iitp.world : Proto type with ceiling
+	iitp_noceiling.world : Proto type without ceiling
+	iitp_v1.world : iitp competition version 1 with ceiling
+	iitp_noceiling_v1.world : iitp competition version 1 without ceiling
 	```
 3. Swarm_ctrl_pkg/launch
 	```
@@ -176,6 +176,7 @@
 	$roslaunch swarm_ctrl_pkg iitp_test.launch 
 	$roslaunch obstacle_detect obstacle_detect.launch 
 	```
+* iitp_test.launch 파일에서 사용하는 world파일을 변경할 수 있다. 실제 사용할 world파일로 바꾸자. 
 
 ## 회피모드 파라미터 변경하기
 1. 터미널 창에서 회피모드 온 or 오프 하기 
