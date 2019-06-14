@@ -18,7 +18,7 @@
 4. $cm을 한다.(bashrc에서 미리 설정해둠.) 
 5. (선택사항) 에러 발생시 , visual studio code의 패키지를 설치하고 다시 $cm을 한다. 
 	```
-	*C/C++ 
+	* C/C++ 
 	* C++ Intellisense 
 	* Korean Laguage Pack for Visual Studio Code 
 	```
