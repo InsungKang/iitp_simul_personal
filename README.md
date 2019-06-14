@@ -39,10 +39,25 @@
 	```
 2. Firmware/Tools/sitl_gazebo/worlds 
 	```
-	iitp.world : Proto type with ceiling
-	iitp_noceiling.world : Proto type without ceiling
-	iitp_v1.world : iitp competition version 1 with ceiling
-	iitp_noceiling_v1.world : iitp competition version 1 without ceiling
+	iitp.world 초기버전 
+
+    iitp_noceiling.world 천장없음 
+
+    iitp_v1.world 창문, 원통에 테두리 추가(빨간색),출발 칸막이 높이 조정 
+
+    iitp_noceiling_v1.world 
+
+    iitp_v2.world 나무 변경(3종류), 네트 색 변경(회색-->파란색) 
+
+    iitp_noceiling_v2.world  
+
+    iitp_v3.world 바닥 그리드 사이즈 변경 (12.5cm --> 30cm) 
+
+    iitp_noceiling_v3.world  
+
+    iitp_v4.world 드론에 바람 추가(해당 위치로 이동했을때 바람 세기 수동으로 변경해줘야함,바람은 가제보8이상에서만 동작) 
+
+    iitp_noceiling_v4.world  
 	```
 3. Swarm_ctrl_pkg/launch
 	```
@@ -95,6 +110,11 @@
 	source /opt/ros/melodic/setup.bash
 	source ~/catkin_ws/devel/setup.bash
 	source ~/Firmware/Tools/setup_gazebo.bash ~/Firmware ~/Firmware/build/posix_sitl_default
+
+	#if your gazebo version is 9, following sentence is right, but if version isnot 9 , change 'gazebo-9' to proper version'gazebo-?'
+	#ex)'gazebo-8'
+	export export GAZEBO_PLUGIN_PATH=/usr/lib/x86_64-linux-gnu/gazebo-9/plugins 
+
 	export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:~/Firmware
 	export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:~/Firmware/Tools/sitl_gazebo
 	
