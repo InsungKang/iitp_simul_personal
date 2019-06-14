@@ -1,13 +1,8 @@
 # iitp_simul_personal: iitp 대회 시뮬레이션용 model,launch,world 파일들
-<<<<<<< HEAD
 ## 해당 패키지가 필요
 * 다음 swarm, obstacle 패키지는 catkin_ws/src에서 git clone을 한다. 
 * px4 패키지의 경우에는 clone한 경로에 맞춰 .bashrc의 해당 부분을 알맞게 수정해야함.
-=======
-## 해당 패키지가 필요함.
-*다음 swarm, obstacle 패키지는 catkin_ws/src에서 git clone을 한다. 
-*px4 패키지의 경우에는 clone한 경로에 맞춰 .bashrc의 해당 부분을 알맞게 수정해야함.
->>>>>>> 7b03b0cf0e80ececdbecb1fbe70207175193020f
+
 1. 'swarm_ctrl_pkg' pkg : intergratedCoord-start_orientation 브랜치
 	```
 	$git clone https://github.com/ICSL-hanyang/swarm_ctrl_pkg.git 
@@ -108,11 +103,7 @@
 	export ROSLAUNCH_SSH_UNKNOWN=1
 	```
 
-<<<<<<< HEAD
-## 시뮬레이션에 관련된 코드 수정(실제 펌웨어랑 통신하는것이 아니라서 주석처리 후 수정해야 함)
-=======
-## 시뮬레이션에 관련된 코드 수정(실제 펌웨어랑 통신하는것이 아니라서 주석처리 후 수정해야하는 부분 있음)
->>>>>>> 7b03b0cf0e80ececdbecb1fbe70207175193020f
+## 시뮬레이션에 관련된 코드 수정(실제 펌웨어랑 통신하는것이 아니라 주석처리 후 수정해야 함)
 1. Obstacle_detect.의 launch/obstacle_detect.launch파일 머신 부분 삭제 
 	```
 	<arg name="user_hostname" default="woody"/> 
@@ -179,10 +170,8 @@
 
 
 ## 테스트 방법
-<<<<<<< HEAD
 * 다음 명령을 터미널 창에서 실행한다.
-=======
->>>>>>> 7b03b0cf0e80ececdbecb1fbe70207175193020f
+
 	```
 	$roslaunch swarm_ctrl_pkg iitp_test.launch 
 	$roslaunch obstacle_detect obstacle_detect.launch 
@@ -203,11 +192,7 @@
 	$rosparam set /swarm_node/setpoint/kp_seek 3       (인력, default 값 1) 
 	```
 
-<<<<<<< HEAD
 ## *드론 이동
-=======
-## 드론 이동
->>>>>>> 7b03b0cf0e80ececdbecb1fbe70207175193020f
 1. 위에 세가지 실행파일(*.launch)를 실행한후, 새로운 터미널창에서 회피모드를 'on'하고 비행에 관련된 파라미터들을 변경한다.
 2. 아래 명령을 통해 드론을 뛰울 수 있다.
 	```
