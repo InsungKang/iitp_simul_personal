@@ -118,7 +118,10 @@
        <!-- <px4flow_pose_rpy value= "$(arg px4flow_pose_rpy)"/>
        <px4flow_sensor_rpy value= "$(arg px4flow_sensor_rpy)"/> -->
     <xacro:property name="px4flow_pose_rpy" value="1.57079632679 0 1.57079632679" />
-    <xacro:property name="px4flow_sensor_rpy" value="-1.57079632679 1.57079632679 0" />
+    <!-- <xacro:property name="px4flow_pose_rpy" value="0 1.57079632679 1.57079632679" /> -->
+    <!-- <xacro:property name="px4flow_sensor_rpy" value="-1.57079632679 1.57079632679 0" /> -->
+    <xacro:property name="px4flow_sensor_rpy" value="0 1.57079632679 1.5707963267" />
+    <!-- <xacro:property name="px4flow_sensor_rpy" value="0 1.57079632679 3.1415" /> -->
     </xacro:if>
     <xacro:unless value="${camera_T_sonar_F}">
       <!-- <px4flow_pose_rpy value= "0 0 0"/>
@@ -165,14 +168,14 @@
           <always_on>true</always_on>
           <update_rate>${frame_rate}</update_rate>
           <!-- set up visibility of beam form of camera sight> -->
-          <visualize>false</visualize>
-          <!-- <topic>/px4flow</topic> -->
+          <visualize>true</visualize>
+          <topic>/px4flow</topic>
           <camera>
             <horizontal_fov>0.25</horizontal_fov>
-            <lens>
+            <!-- <lens>
               <type>gnomonical</type>
               <scale_to_hfov>false</scale_to_hfov>
-            </lens>
+            </lens> -->
             <image>
               <width>64</width>
               <height>64</height>
@@ -188,9 +191,14 @@
               <stddev>0.001</stddev>
             </noise>
           </camera>
-          <plugin name="${namespace}_opticalflow_plugin" filename="libgazebo_opticalflow_plugin.so">
-              <robotNamespace></robotNamespace>
-              <outputRate>20</outputRate>
+          <!-- <plugin name="${namespace}_opticalflow_plugin" filename="libgazebo_opticalflow_plugin.so"> -->
+          <plugin name="px4flow" filename="libgazebo_opticalflow_plugin.so">
+              <robotNamespace>${namespace}</robotNamespace>
+              <!-- <outputRate>20</outputRate> -->
+              <updateRate>0.0</updateRate>
+              <!-- <topicName>/mavros/px4flow/raw/optical_flow_rad</topicName> -->
+              <!-- <topicName>abcdedfhijk</topicName> -->
+              <!-- <frameName>${namespace}_px4flow_${camera_T_sonar_F}_link</frameName> -->
           </plugin>
           <!-- <plugin name="${namespace}_camera_controller" filename="libgazebo_ros_camera.so">
             <robotNamespace>${namespace}</robotNamespace>
@@ -218,11 +226,26 @@
             <radius>0.6</radius>
           </sonar>
           <always_on>1</always_on>
-          <visualize>false</visualize>
-          <plugin name="${namespace}_sonar_plugin" filename="libgazebo_opticalflow_plugin.so">
+          <visualize>true</visualize>
+          <!-- <plugin name="${namespace}_sonar_plugin" filename="libgazebo_opticalflow_plugin.so">
             <robotNamespace>${namespace}</robotNamespace>
             <outputRate>20</outputRate>
+          </plugin> -->
+          <plugin name="hrlv_ez4_pub" filename="libgazebo_sonar_plugin.so">
           </plugin>
+          <!-- libgazebo_ros_range.so -->
+          <!-- <plugin name="gazebo_ros_range" filename="libgazebo_ros_range.so">
+            <robotNamespace>${namespace}</robotNamespace>
+            <gaussianNoise>0.005</gaussianNoise>
+            <alwaysOn>true</alwaysOn>
+            <updateRate>10</updateRate>
+            <topicName>sensor/hrlv_ez4_pub</topicName>
+            <frameName>${namespace}/px4flow_${camera_T_sonar_F}_link</frameName>
+            <fov>0</fov>
+            <radiation>ultrasound</radiation>
+          </plugin> -->
+
+
         </sensor>
       </xacro:unless>
     </gazebo>
@@ -261,15 +284,17 @@
     <joint name="${namespace}/lidar_joint" type="fixed">
       <!-- <axis xyz="0 1 0"/> -->
       <origin xyz="${lidar_xyz}" rpy="0 1.570896 0" />
+      <!-- <origin xyz="${lidar_xyz}" rpy="0 3.1415 0" /> -->
       <!-- <xacro:insert_block name="origin" /> -->
       <parent link="${parent_link}" />
       <child link="${namespace}/lidar_link" />
     </joint>
     <gazebo reference="${namespace}/lidar_link">
       <sensor type="ray" name="${namespace}_lidar">
+        <!-- <pose>0 0 0 0 -1.570896 0</pose> -->
         <always_on>1</always_on>
         <update_rate>${frame_rate}</update_rate>
-        <visualize>false</visualize>
+        <visualize>true</visualize>
         <ray>
           <scan>
             <horizontal>
@@ -292,7 +317,9 @@
             <stddev>0.02</stddev>
           </noise>
         </ray>
-        <plugin name="Laserplugin" filename="libgazebo_lidar_plugin.so">
+        <plugin name="${namespace}_Laserplugin" filename="libgazebo_lidar_plugin.so">
+        <!-- <plugin name="lidarlite_pub" filename="libgazebo_lidar_plugin.so"> -->
+          <!-- <robotNamespace>${namespace}</robotNamespace> -->
           <robotNamespace>${namespace}</robotNamespace>
           <min_distance>0.2</min_distance>
           <max_distance>15.0</max_distance>
