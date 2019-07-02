@@ -113,7 +113,10 @@
 
 	#if your gazebo version is 9, following sentence is right, but if version isnot 9 , change 'gazebo-9' to proper version'gazebo-?'
 	#ex)'gazebo-8'
-	export export GAZEBO_PLUGIN_PATH=/usr/lib/x86_64-linux-gnu/gazebo-9/plugins 
+	export GAZEBO_PLUGIN_PATH=${GAZEBO_PLUGIN_PATH}:/usr/lib/x86_64-linux-gnu/gazebo-9/plugins
+	#if your system os is ubuntu 16.04, change 'melodic' to 'kinetic'
+	#if your system os is ubuntu 18.04, 'melodic' is right.
+	export GAZEBO_PLUGIN_PATH=${GAZEBO_PLUGIN_PATH}:/opt/ros/melodic/lib 
 
 	export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:~/Firmware
 	export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:~/Firmware/Tools/sitl_gazebo
@@ -202,8 +205,11 @@
 1. 터미널 창에서 회피모드 온 or 오프 하기 
 * 다음 명령은 swarm_ctrl_pkg/config/swarm-configs/config.yaml을 보면 맨 위에 파람을 한시적으로 변경시켜주는 명령임. 
 	```
-	$rosparam set /swarm_node/use_vel true    (이 모드일때 rp lidar 회피 알고리즘 동작) 
-	$rosparam set /swarm_node/use_vel false  (false로 하면 회피 알고리즘 동작 안함) 
+	$rosparam set /swarm_node/setpoint/separate true (이 모드일때 rp lidar 회피 알고리즘 동작)  
+    $rosparam set /swarm_node/setpoint/separate false (false로 하면 회피 알고리즘 동작 안함)  
+
+    $rosparam set /swarm_node/use_vel true (이 모드일때 rp lidar 회피 알고리즘 속도기반)  
+    $rosparam set /swarm_node/use_vel false (false로 하면 회피 알고리즘 속도기반 아님)  
 	```
 2. 다음 명령어들은 드론 비행에 관한 파라미터들이다. 
 * 해당 파라미터들은 swarm_ctrl_pkg/config/swarm-configs/config.yaml을 보면 있으며 다음 명령은 파라미터들을 한시적으로 변경시켜주는 명령임. 
