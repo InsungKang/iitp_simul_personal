@@ -57,7 +57,15 @@
 
     iitp_v4.world 드론에 바람 추가(해당 위치로 이동했을때 바람 세기 수동으로 변경해줘야함,바람은 가제보8이상에서만 동작) 
 
-    iitp_noceiling_v4.world  
+    iitp_noceiling_v4.world
+
+	iitp_v5.world 최종 본,창문 오른쪽(바람 없음), 네트색 변경(레드,블루), 창문테두리색변경(흰색), 창문벽(목재), 스타트, 엔드 지점 위치 살짝 조정
+
+    iitp_noceiling_v5.world  
+
+	iitp_v6.world 최종 본,창문 왼쪽(바람없음)
+
+    iitp_noceiling_v6.world  
 	```
 3. Swarm_ctrl_pkg/launch
 	```
